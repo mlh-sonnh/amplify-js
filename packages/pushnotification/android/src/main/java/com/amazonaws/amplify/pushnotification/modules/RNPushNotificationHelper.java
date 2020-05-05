@@ -140,7 +140,7 @@ public class RNPushNotificationHelper {
         }
     }
 
-    public void sendToNotificationCentre(Bundle bundle) {
+    public void sendToNotificationCentre(Bundle bundle, Bitmap bigPic) {
         try {
             Class intentClass = getMainActivityClass();
             if (intentClass == null) {
@@ -256,6 +256,11 @@ public class RNPushNotificationHelper {
             }
 
             notification.setStyle(new NotificationCompat.BigTextStyle().bigText(bigText));
+
+            if (bigPic != null) {
+                notification.setStyle(new NotificationCompat.BigPictureStyle()
+                    .bigPicture(bigPic));
+            }
 
             Intent intent = new Intent(NOTIFICATION_OPENED);
             intent.putExtra("notification", bundle);
